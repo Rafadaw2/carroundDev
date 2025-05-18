@@ -20,17 +20,23 @@
                 {% for hora in 7..19 %}
                     {% set horaActual = '%02d:00'|format(hora) %}
                     {% set encontrado = false %}
-                    {% set matricula = '' %}
+                    {% set servicioEncontrado = null %}
 
                     {% for servicio in datos.servicios %}
                         {% if not encontrado and servicio.horaRecogidaPrevista == horaActual %}
                             {% set encontrado = true %}
-                            {% set matricula = servicio.vehiculo.matricula %}
+                            {% set servicioEncontrado = servicio %}
                         {% endif %}
                     {% endfor %}
 
                     <td>
-                        {{ matricula is not empty ? matricula : '-' }}
+                        {% if servicioEncontrado %}
+                            <a href="{{ path('app_editServicio', {id: servicioEncontrado.id}) }}">
+                                {{ servicioEncontrado.vehiculo.matricula }}
+                            </a>
+                        {% else %}
+                            -
+                        {% endif %}
                     </td>
                 {% endfor %}
             </tr>
