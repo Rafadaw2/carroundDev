@@ -37,21 +37,51 @@ final class ServicioController extends AbstractController
         if($form->isSubmitted()&& $form->isValid()){
             $entityManager->persist($servicio);
             $entityManager->flush();
-            return $this->redirectToRoute('app_show_servicio');
+            return $this->redirectToRoute('app_show_servicio',['fecha'=>$servicio->getFecha()->format('Y-m-d')]);
         }
         return $this->render('servicio/planServiceForm.html.twig', [
             'PlanServiceForm' => $form->createView(),
         ]);
     }
-    #[Route('/servicio/show/{fecha?}', name: 'app_show_servicio')]
-    public function showServicesByDate(ServicioRepository $servicioRepository, ?string $fecha): Response
+    #[Route('/servicio/show', name: 'app_show_servicio')]
+    public function showServicesByDate(ServicioRepository $servicioRepository, Request $request): Response
     {
+        $fecha = $request->query->get('fecha');
         $fechaFiltro= $fecha ? \DateTime::createFromFormat('Y-m-d',$fecha):new \DateTime();
+        $fechaFiltro->setTime(0, 0, 0);
         $servicios= $servicioRepository->findBy(['fecha'=>$fechaFiltro]);
-
 
         return $this->render('servicio/servicioView.html.twig', [
             'servicios' => $servicios,
+            'fecha'=>$fechaFiltro->format('d-m-Y')
+        ]);
+    }
+    #[Route('/servicio/plan', name: 'app_show_plan')]
+    public function showPlanByDate(ServicioRepository $servicioRepository, Request $request): Response
+    {
+        $fecha = $request->query->get('fecha');
+        $fechaFiltro= $fecha ? \DateTime::createFromFormat('Y-m-d',$fecha):new \DateTime();
+        $fechaFiltro->setTime(0, 0, 0);
+        $servicios= $servicioRepository->findBy(['fecha'=>$fechaFiltro]);
+
+        $serviciosPorConductor=[];
+
+        foreach($servicios as $servicio){
+            $conductor=$servicio->getConductor();
+            if(!$conductor){
+                continue;//por si no estuviera planificado
+            }
+            $id=$conductor->getId();
+            if(!isset($serviciosPorConductor[$id])){
+                $serviciosPorConductor[$id]=[
+                    'conductor'=>$conductor,
+                    'servicios'=>[]
+                ];
+            }
+            $serviciosPorConductor[$id]['servicios'][]=$servicio;
+        }
+        return $this->render('servicio/newServicePlan.html.twig', [
+            'servicios' => $serviciosPorConductor,
             'fecha'=>$fechaFiltro->format('d-m-Y')
         ]);
     }

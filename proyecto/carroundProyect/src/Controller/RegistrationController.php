@@ -13,7 +13,7 @@ use App\Entity\Usuario;
 
 final class RegistrationController extends AbstractController
 {
-    #[Route('/registration', name: 'app_registration')]
+    #[Route('/registro', name: 'app_registration')]
     public function register(
         Request $request,
         UserPasswordHasherInterface $passwordHasher,

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Planificación día {{fecha}}</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Conductor</th>
+            {% for hora in 7..19 %}
+                <th>{{ '%02d:00'|format(hora) }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for datos in servicios %}
+            <tr>
+                <td>
+                    {{ datos.conductor.nombre }} {{ datos.conductor.apellido1 }} {{ datos.conductor.apellido2 }}
+                </td>
+                {% for hora in 7..19 %}
+                    {% set horaActual = '%02d:00'|format(hora) %}
+                    {% set encontrado = false %}
+                    {% set matricula = '' %}
+
+                    {% for servicio in datos.servicios %}
+                        {% if not encontrado and servicio.horaRecogidaPrevista == horaActual %}
+                            {% set encontrado = true %}
+                            {% set matricula = servicio.vehiculo.matricula %}
+                        {% endif %}
+                    {% endfor %}
+
+                    <td>
+                        {{ matricula is not empty ? matricula : '-' }}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}
