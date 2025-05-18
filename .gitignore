@@ -7,7 +7,7 @@ proyecto/carroundProyect/.env.local
 /public/bundles/
 /proyecto/carroundProyect/var/
 /proyecto/carroundProyect/vendor/
-/proyecto/carroundProyect/dataMYSQL
+proyecto/dataMYSQL/
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
