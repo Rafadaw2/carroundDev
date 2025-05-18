@@ -9,7 +9,12 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libonig-dev \
     libxml2-dev \
-    && docker-php-ext-install mysqli pdo_mysql 
+    && docker-php-ext-configure intl\
+    && docker-php-ext-install \
+    intl \
+    mysqli \
+    pdo \
+    pdo_mysql
 
 RUN apt-get update && apt-get install -y \
     libpng-dev libjpeg-dev libfreetype6-dev \

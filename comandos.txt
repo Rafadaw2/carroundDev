@@ -1,0 +1,16 @@
+ php bin/console make:entity
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+php bin/console make:controller UsuarioPlaylistController
+docker exec -ti symfony-linux bash
+symfony new labSymfony1 --webapp
+symfony server:start --allow-all-ip --no-tls --allow-http --port=8000
+http://localhost:8000/
+php bin/console doctrine:migrations:execute --down Version20250128093015
+php bin/console doctrine:migrations:diff
+php bin/console make:entity --regenerate App\Entity\Canción
+php bin/console make:admin:crud
+php bin/console cache:clear
+https://www.youtube.com/watch?v=VV1gIpvGCDI&ab_channel=YamirTV
+https://www.youtube.com/watch?v=2vaAcuvy36c&ab_channel=AQPHostingA1
+https://www.youtube.com/watch?v=bpVz88QDO1g&ab_channel=Moodle3ipunt

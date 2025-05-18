@@ -2,25 +2,27 @@ version: '3.8'
 
 services:
   symfony-app:
-    build: 
-      context: .    # Ubicación del Dockerfile
+    build:
+      context: .  # Ubicación del Dockerfile
       dockerfile: Dockerfile
     container_name: symfony-carround
     volumes:
       - /home/rafa/Documentos/proyectoCarround/proyecto:/var/www/symfony  # Mapeo del proyecto
-      #- C:\Apache24\htdocs\ProyectoMySpotify\SymfonyProyectos:/var/www/symfony
+      - ./php.ini:/usr/local/etc/php/conf.d/custom-php.ini
     working_dir: /var/www/symfony
     ports:
       - "8000:8000"
     environment:
-      - COMPOSER_ALLOW_SUPERUSER=1
-    command: tail -f /dev/null
+      # Aquí puedes agregar variables de entorno si es necesario
+      COMPOSER_ALLOW_SUPERUSER: 1
+    command: tail -f /dev/null  # Comando para mantener el contenedor activo
     networks:
       - symfony-network
-    depends_on:      
+    depends_on:
       - mysql
+
   mysql:
-    image: mysql:8.0    # Imagen oficial de MySQL
+    image: mysql:8.0  # Imagen oficial de MySQL
     container_name: mysql_carround
     environment:
       MYSQL_ROOT_PASSWORD: 1234
@@ -35,5 +37,3 @@ services:
 networks:
   symfony-network:
     driver: bridge
-
-
