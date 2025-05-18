@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello VehiculoController!{% endblock %}
+
+{% block body %}
+    <div id='formulario'>
+        {{ form_start(newVehiculoForm) }}
+
+        {{ form_row(newVehiculoForm.marca) }}
+        {{ form_row(newVehiculoForm.modelo) }}
+        {{ form_row(newVehiculoForm.matricula) }}
+        <div style="display: flex; align-items: center;">
+            {{ form_row(newVehiculoForm.receptor) }}
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='/receptor/new'">
+                Añadir receptor
+            </button>
+        </div>
+
+
+        <button class="btn">Crear</button>
+        {{ form_end(newVehiculoForm) }}
+
+    </div>
+{% endblock %}

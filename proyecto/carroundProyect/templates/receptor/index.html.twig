@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ReceptorController!{% endblock %}
+
+{% block body %}
+    <div id='formulario'>
+        {{ form_start(newReceptorForm) }}
+
+        {{ form_row(newReceptorForm.email) }}
+        {{ form_row(newReceptorForm.nombre) }}
+        {{ form_row(newReceptorForm.apellido1) }}
+        {{ form_row(newReceptorForm.apellido2) }}
+        {{ form_row(newReceptorForm.NIF) }}
+        {{ form_row(newReceptorForm.telefono) }}
+        <div style="display: flex; align-items: center;">
+            {{ form_row(newReceptorForm.vehiculos) }}
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='/vehiculo/new'">
+                Añadir vehiculo
+            </button>
+        </div>
+
+
+        <button class="btn">Crear</button>
+        {{ form_end(newReceptorForm) }}
+
+    </div>
+{% endblock %}
