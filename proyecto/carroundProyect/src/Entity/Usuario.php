@@ -248,7 +248,7 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     }
     public function __toString(): string
     {
-        return $this->nombre;
+        return $this->nombre.' '.$this->apellido1.' '.$this->apellido2;;
     }
 
 

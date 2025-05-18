@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Editar o planificar servicio</h1>
+
+    {{ form_start(PlanServiceForm) }}
+        {{ form_widget(PlanServiceForm) }}
+        <button class="btn btn-success">Guardar</button>
+    {{ form_end(PlanServiceForm) }}
+{% endblock %}

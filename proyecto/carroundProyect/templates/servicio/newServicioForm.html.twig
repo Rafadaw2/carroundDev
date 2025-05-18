@@ -18,6 +18,12 @@
                 Añadir vehículo
             </button>
         </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+            {{ form_row(newServiceForm.receptor) }}
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='/receptor/new'">
+                Añadir receptor
+            </button>
+        </div>
 
         {{ form_row(newServiceForm.creador) }}
 

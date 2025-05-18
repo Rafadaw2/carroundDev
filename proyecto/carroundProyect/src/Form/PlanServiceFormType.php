@@ -12,23 +12,19 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class NewServiceFormType extends AbstractType
+class PlanServiceFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        //$creador=$this->getUser(); Por defecto colocar como creador el usuario logeado
         $builder
-            ->add('direccionRecogida',null,[
-                'attr' => ['class' => 'autocomplete-address', 'autocomplete' => 'off'],
-            ])
-            ->add('direccionEntrega', null, [
-                'attr' => ['class' => 'autocomplete-address', 'autocomplete' => 'off'],
-            ])
+            ->add('direccionRecogida')
+            ->add('direccionEntrega')
             ->add('fecha', null, [
                 'widget' => 'single_text',
             ])
+            ->add('horaEntregaPrevista')
             ->add('horaRecogidaPrevista')
-            ->add('franjaDisponibilidad')
+            ->add('horaRecogidaReal')
             ->add('franjaDisponibilidad', ChoiceType::class, [
                 'choices' => [
                 'mañana' => 'mañana',
@@ -44,11 +40,14 @@ class NewServiceFormType extends AbstractType
                 'class' => Usuario::class,
                 'choice_label' => 'id',
             ])
+            ->add('conductor', EntityType::class, [
+                'class' => Usuario::class,
+                //'choice_label' => 'nombre', al suprimirlo utiliza el toString 
+            ])
             ->add('receptor', EntityType::class, [
                 'class' => Receptor::class,
-                'choice_label' => 'id',
+                'choice_label' => 'NIF',
             ])
-
         ;
     }
 

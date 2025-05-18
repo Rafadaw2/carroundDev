@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Servicios del {{fecha}}{% endblock %}
+
+{% block body %}
+<h1>Servicios del {{fecha}}</h1>
+<form method="get" style="display: flex; align-items: flex-start; gap: 10px; padding: 10px;" action="{{ path('app_show_servicio') }}">
+<h3 style="margin: 0;">Mostrar los servicios de otra fecha</h3>
+    <input type="date" name="fecha" value="{{ fecha }}">
+    <button type="submit">Filtrar</button>
+</form>
+
+  <div class="servicios">
+    {% for servicio in servicios %}
+            <div class="servicio" onclick="">
+              <h5>{{servicio.receptor.nombre}}, matricula {{servicio.vehiculo.matricula}}</h5>
+              <strong>Franja: {{servicio.franjaDisponibilidad}}</strong>
+              <strong>Hora de recogida: {{servicio.horaRecogidaPrevista}}</strong>
+              <strong>Dirección de recogida: {{servicio.direccionRecogida}}</strong>
+              <strong>Dirección de entrega: {{servicio.direccionEntrega}}</strong>
+              <a href="/servicio/{{servicio.id}}/edit">Modificar</a>
+
+
+            </div>
+{% endfor %}
+</div>
+
+{% endblock %}
+

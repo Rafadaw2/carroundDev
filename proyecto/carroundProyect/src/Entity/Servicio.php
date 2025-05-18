@@ -54,6 +54,9 @@ class Servicio
     #[ORM\ManyToOne(inversedBy: 'conductor')]
     private ?Usuario $conductor = null;
 
+    #[ORM\ManyToOne(inversedBy: 'servicios')]
+    private ?Receptor $receptor = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -217,5 +220,17 @@ class Servicio
     public function __toString(): string
     {
         return $this->id;
+    }
+
+    public function getReceptor(): ?Receptor
+    {
+        return $this->receptor;
+    }
+
+    public function setReceptor(?Receptor $receptor): static
+    {
+        $this->receptor = $receptor;
+
+        return $this;
     }
 }

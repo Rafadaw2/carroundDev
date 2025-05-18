@@ -39,9 +39,16 @@ class Receptor
     #[ORM\ManyToMany(targetEntity: Vehiculo::class, mappedBy: 'receptor')]
     private Collection $vehiculos;
 
+    /**
+     * @var Collection<int, Servicio>
+     */
+    #[ORM\OneToMany(targetEntity: Servicio::class, mappedBy: 'receptor')]
+    private Collection $servicios;
+
     public function __construct()
     {
         $this->vehiculos = new ArrayCollection();
+        $this->servicios = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -150,5 +157,35 @@ class Receptor
     public function __toString(): string
     {
         return $this->nombre;
+    }
+
+    /**
+     * @return Collection<int, Servicio>
+     */
+    public function getServicios(): Collection
+    {
+        return $this->servicios;
+    }
+
+    public function addServicio(Servicio $servicio): static
+    {
+        if (!$this->servicios->contains($servicio)) {
+            $this->servicios->add($servicio);
+            $servicio->setReceptor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeServicio(Servicio $servicio): static
+    {
+        if ($this->servicios->removeElement($servicio)) {
+            // set the owning side to null (unless already changed)
+            if ($servicio->getReceptor() === $this) {
+                $servicio->setReceptor(null);
+            }
+        }
+
+        return $this;
     }
 }
