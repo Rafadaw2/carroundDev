@@ -13,12 +13,15 @@
   <div class="servicios">
     {% for servicio in servicios %}
             <div class="servicio" onclick="">
-              <h5>{{servicio.receptor.nombre}}, matricula {{servicio.vehiculo.matricula}}</h5>
-              <strong>Franja: {{servicio.franjaDisponibilidad}}</strong>
-              <strong>Hora de recogida: {{servicio.horaRecogidaPrevista}}</strong>
-              <strong>Dirección de recogida: {{servicio.direccionRecogida}}</strong>
-              <strong>Dirección de entrega: {{servicio.direccionEntrega}}</strong>
-              <a href="/servicio/{{servicio.id}}/edit">Modificar</a>
+              <ul><h5>{{servicio.receptor.nombre}}, matricula {{servicio.vehiculo.matricula}}<a href="/servicio/{{servicio.id}}/edit">Modificar</a></h5></ul>
+              
+              <li><strong>Franja: {{servicio.franjaDisponibilidad}}</strong></li>
+              <li><strong>Hora de recogida: {{servicio.horaRecogidaPrevista}}</strong></li>
+              <li><strong>Dirección de recogida: {{servicio.direccionRecogida}}</strong></li>
+              <li><strong>Coordenadas de recogida: {{servicio.latitudRecogida}}, {{servicio.longitudRecogida}}</strong></li>
+              <li><strong>Dirección de entrega: {{servicio.direccionEntrega}}</strong></li>
+              <li><strong>Coordenadas de entrega: {{servicio.latitudEntrega}}, {{servicio.longitudEntrega}}</strong></li>
+              
 
 
             </div>

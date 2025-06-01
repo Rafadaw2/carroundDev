@@ -10,6 +10,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Form\RegisterFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Usuario;
+use App\Service\GeocodingService;
 
 final class RegistrationController extends AbstractController
 {
@@ -17,7 +18,8 @@ final class RegistrationController extends AbstractController
     public function register(
         Request $request,
         UserPasswordHasherInterface $passwordHasher,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        GeocodingService $geocoding
     ): Response
     {
         $user = new Usuario();
@@ -25,12 +27,19 @@ final class RegistrationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // Hash the plain password
+            $latitudDomicilio=$user->getLatitudDomicilio();
+            $longitudDomicilio=$user->getLongitudDomicilio();
+            $coordenadaLatitud=$geocoding->obtenerCoordenadas($latitudDomicilio);
+            $coordenadaLongitud=$geocoding->obtenerCoordenadas($longitudDomicilio);
+            $user->setLatitudDomicilio($coordenadaLatitud);
+            $user->setLatitudDomicilio($coordenadaLongitud);
             $user->setPassword(
                 $passwordHasher->hashPassword(
                     $user,
                     $form->get('password')->getData()
                 )
             );
+            
             $user->setRoles($form->get('roles')->getData());
             $entityManager->persist($user);
             $entityManager->flush();
@@ -38,6 +47,7 @@ final class RegistrationController extends AbstractController
         }
         return $this->render('registration/index.html.twig', [
             'registrationForm' => $form->createView(),
+            'google_api_key'=> $this->getParameter('google_api_key')
         ]);
     }
 }

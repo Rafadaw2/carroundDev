@@ -17,8 +17,12 @@ class PlanServiceFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('direccionRecogida')
-            ->add('direccionEntrega')
+            ->add('direccionRecogida',null,[
+                'attr' => ['class' => 'autocomplete-address', 'autocomplete' => 'off'],
+            ])
+            ->add('direccionEntrega', null, [
+                'attr' => ['class' => 'autocomplete-address', 'autocomplete' => 'off'],
+            ])
             ->add('fecha', null, [
                 'widget' => 'single_text',
             ])

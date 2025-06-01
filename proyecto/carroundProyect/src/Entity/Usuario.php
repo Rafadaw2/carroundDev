@@ -57,6 +57,15 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(inversedBy: 'trabajadores')]
     private ?Centro $centro = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $domicilio = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $latitudDomicilio = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $longitudDomicilio = null;
+
 
 
     public function __construct()
@@ -249,6 +258,42 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         return $this->nombre.' '.$this->apellido1.' '.$this->apellido2;;
+    }
+
+    public function getDomicilio(): ?string
+    {
+        return $this->domicilio;
+    }
+
+    public function setDomicilio(?string $domicilio): static
+    {
+        $this->domicilio = $domicilio;
+
+        return $this;
+    }
+
+    public function getLatitudDomicilio(): ?float
+    {
+        return $this->latitudDomicilio;
+    }
+
+    public function setLatitudDomicilio(?float $latitudDomicilio): static
+    {
+        $this->latitudDomicilio = $latitudDomicilio;
+
+        return $this;
+    }
+
+    public function getLongitudDomicilio(): ?float
+    {
+        return $this->longitudDomicilio;
+    }
+
+    public function setLongitudDomicilio(?float $longitudDomicilio): static
+    {
+        $this->longitudDomicilio = $longitudDomicilio;
+
+        return $this;
     }
 
 

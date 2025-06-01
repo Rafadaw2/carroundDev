@@ -57,6 +57,18 @@ class Servicio
     #[ORM\ManyToOne(inversedBy: 'servicios')]
     private ?Receptor $receptor = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $latitudRecogida = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $longitudRecogida = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $latitudEntrega = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $longitudEntrega = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -230,6 +242,54 @@ class Servicio
     public function setReceptor(?Receptor $receptor): static
     {
         $this->receptor = $receptor;
+
+        return $this;
+    }
+
+    public function getLatitudRecogida(): ?float
+    {
+        return $this->latitudRecogida;
+    }
+
+    public function setLatitudRecogida(?float $latitud): static
+    {
+        $this->latitudRecogida = $latitud;
+
+        return $this;
+    }
+
+    public function getLongitudRecogida(): ?float
+    {
+        return $this->longitudRecogida;
+    }
+
+    public function setLongitudRecogida(?float $longitud): static
+    {
+        $this->longitudRecogida = $longitud;
+
+        return $this;
+    }
+
+    public function getLatitudEntrega(): ?float
+    {
+        return $this->latitudEntrega;
+    }
+
+    public function setLatitudEntrega(?float $latitudEntrega): static
+    {
+        $this->latitudEntrega = $latitudEntrega;
+
+        return $this;
+    }
+
+    public function getLongitudEntrega(): ?float
+    {
+        return $this->longitudEntrega;
+    }
+
+    public function setLongitudEntrega(?float $longitudEntrega): static
+    {
+        $this->longitudEntrega = $longitudEntrega;
 
         return $this;
     }

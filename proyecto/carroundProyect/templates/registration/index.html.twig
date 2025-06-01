@@ -9,4 +9,21 @@
         <button class="btn">Registrar</button>
         {{ form_end(registrationForm) }}
     </div>
+        <script>
+    function initAutocomplete() {
+        const inputs = document.querySelectorAll('.autocomplete-address');
+        inputs.forEach(input => {
+            new google.maps.places.Autocomplete(input, {
+                componentRestrictions: { country: 'es' },
+                fields: ['formatted_address']
+            });
+        });
+    }
+    window.initAutocomplete = initAutocomplete;
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}&libraries=places&callback=initAutocomplete"
+        async defer>
+    </script>
 {% endblock %}

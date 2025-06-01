@@ -16,6 +16,7 @@ class RegisterFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        //Aqui solo puede entrar el manager
         $builder
             ->add('email')
             ->add('roles')
@@ -27,6 +28,9 @@ class RegisterFormType extends AbstractType
             ->add('nombre')
             ->add('apellido1')
             ->add('apellido2')
+            ->add('domicilio',null,[
+                'attr' => ['class' => 'autocomplete-address', 'autocomplete' => 'off'],
+            ])
             ->add('centro', EntityType::class, [
                 'class' => Centro::class,
                 'choice_label' => 'nombre',
