@@ -27,12 +27,10 @@ final class RegistrationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // Hash the plain password
-            $latitudDomicilio=$user->getLatitudDomicilio();
-            $longitudDomicilio=$user->getLongitudDomicilio();
-            $coordenadaLatitud=$geocoding->obtenerCoordenadas($latitudDomicilio);
-            $coordenadaLongitud=$geocoding->obtenerCoordenadas($longitudDomicilio);
-            $user->setLatitudDomicilio($coordenadaLatitud);
-            $user->setLatitudDomicilio($coordenadaLongitud);
+            $direccionDomicilio=$user->getDomicilio();
+            $coordenadasDomicilio=$geocoding->obtenerCoordenadas($direccionDomicilio);
+            $user->setLatitudDomicilio($coordenadasDomicilio['latitud']);
+            $user->setLongitudDomicilio($coordenadasDomicilio['longitud']);
             $user->setPassword(
                 $passwordHasher->hashPassword(
                     $user,

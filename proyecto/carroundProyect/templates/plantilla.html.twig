@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySpotify</title>
+    <link rel="stylesheet" href="{{asset('styles/app.css')}}">
+</head>
+
+<body>
+    <header class="encabezado">
+        <a href="/index"><img id="logoSpotify" src="{{asset('img/logoSpotify.png')}}" alt=""  ></a>
+
+        <div id="contBusqueda">
+            {% if app.user %}
+            <input type="text" id="songName" placeholder="¿Qué canción quieres escuchar?">
+                <a id="contLupa" onclick="buscarConLog()">
+                    <img id="lupa" src="{{asset('img/buscar.png')}}" alt="">
+                </a>
+            {% else %}
+            <input type="text" id="songName" placeholder="¿Qué canción quieres escuchar?">
+                <a id="contLupa" onclick="buscarSinLog()">
+                    <img id="lupa" src="{{asset('img/buscar.png')}}" alt="">
+                </a>
+            {% endif %}
+       
+        </div>
+
+        <a id="contCuenta" href="">
+            <img id="cuenta" src="{{asset('img/cuenta.png')}}" alt="">
+        </a>
+    </header>
+
+    <div class="divNav">
+        <nav class="nav">
+            <ul>
+                <li><a href="/servicio/show">Servicios</a></li>
+                {% if app.user %}
+                    <li><a href="/user/playlist">Playlist</a></li>
+                {% else %}
+                    <li><a href="/playlist">Playlist</a></li>
+                {% endif %}
+                
+                {% if app.user %}
+                    <li><a href="/logout">Cerrar sesión</a></li>
+                {% else %}
+                    <li><a href="/login">Iniciar sesión</a></li>
+                {% endif %}
+                <li><a href="/user/playlist/form">Crear Playlist</a></li>
+                {% if is_granted('ROLE_MANAGER') %}
+                    <li><a href="/manager/estadisticas">Estadísticas</a></li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><a href="/admin">Panel de Admin</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+
+        <main class="contenido" id="contenido">
+            {% block titulo %}{% endblock %}
+            {% block contenido %}{% endblock %}
+        </main>
+        
+    </div>
+    <div id="reproductor">
+        <audio id="audioPlayer" controls >
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+
+    </div>
+
+    <footer>
+        <h5>© 2025, MySpotify. Todos los derechos reservados</h5>
+        <h6>Síguenos en redes</h6>
+        <a href=""><img src="{{asset('img/face.png')}}" alt=""></a>
+        <a href=""><img src="{{asset('img/x.png')}}" alt=""></a>
+        <a href=""><img src="{{asset('img/insta.png')}}" alt=""></a>
+        <a href=""><img src="{{asset('img/tiktok.png')}}" alt=""></a>
+    </footer>
+    <script src="{{asset('script/script.js')}}"></script>
+</body>
+
+</html>

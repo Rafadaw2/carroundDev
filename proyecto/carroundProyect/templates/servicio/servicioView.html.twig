@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'plantilla.html.twig' %}
 
-{% block title %}Servicios del {{fecha}}{% endblock %}
+{% block titulo %}<h1>Login</h1>Servicios del {{fecha}}{% endblock %}
 
-{% block body %}
+{% block contenido %}
 <h1>Servicios del {{fecha}}</h1>
 <form method="get" style="display: flex; align-items: flex-start; gap: 10px; padding: 10px;" action="{{ path('app_show_servicio') }}">
 <h3 style="margin: 0;">Mostrar los servicios de otra fecha</h3>

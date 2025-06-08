@@ -8,6 +8,7 @@ proyecto/carroundProyect/.env.local
 /proyecto/carroundProyect/var/
 /proyecto/carroundProyect/vendor/
 proyecto/dataMYSQL/
+/proyecto/carroundProyect/moduloPython/env/
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
