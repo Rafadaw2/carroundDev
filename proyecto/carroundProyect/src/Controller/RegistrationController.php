@@ -28,6 +28,7 @@ final class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Hash the plain password
             $direccionDomicilio=$user->getDomicilio();
+            
             $coordenadasDomicilio=$geocoding->obtenerCoordenadas($direccionDomicilio);
             $user->setLatitudDomicilio($coordenadasDomicilio['latitud']);
             $user->setLongitudDomicilio($coordenadasDomicilio['longitud']);

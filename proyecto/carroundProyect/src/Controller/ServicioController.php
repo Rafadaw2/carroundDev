@@ -6,6 +6,7 @@ use App\Entity\Servicio;
 use App\Form\NewServiceFormType;
 use App\Form\PlanServiceFormType;
 use App\Repository\ServicioRepository;
+use App\Repository\VehiculoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -78,7 +79,7 @@ final class ServicioController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_show_servicio',['fecha'=>$servicio->getFecha()->format('Y-m-d')]);
         }
-        return $this->render('servicio/planServiceForm.html.twig', [
+        return $this->render('servicio/editServiceForm.html.twig', [
             'PlanServiceForm' => $form->createView(),
             'google_api_key'=> $this->getParameter('google_api_key')
         ]);
@@ -93,7 +94,23 @@ final class ServicioController extends AbstractController
 
         return $this->render('servicio/servicioView.html.twig', [
             'servicios' => $servicios,
-            'fecha'=>$fechaFiltro->format('d-m-Y')
+            'fecha'=>$fechaFiltro->format('d-m-Y'),
+            'titulo'=>'Servicios del '
+        ]);
+    }
+    #[Route('/servicio/show/{matricula}', name: 'app_show_serviciosMatricula')]
+    public function showServicesPorMatricula(ServicioRepository $servicioRepository, Request $request, VehiculoRepository $vehiculoRepository): Response
+    {
+        $matricula = $request->query->get('matricula');
+        $vehiculo= $vehiculoRepository->findOneBy(['matricula'=>$matricula]);
+        $servicios= $servicioRepository->findBy(['vehiculo'=>$vehiculo->getId()]);//El nombre es el del atributo de la clase
+
+
+
+        return $this->render('servicio/servicioViewMatricula.html.twig', [
+            'servicios' => $servicios,
+            'matricula'=>$matricula,
+            'titulo'=>'Servicios del vehiculo '
         ]);
     }
     #[Route('/servicio/plan', name: 'app_show_plan')]

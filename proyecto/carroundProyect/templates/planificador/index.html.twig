@@ -3,7 +3,14 @@
 {% block title %}Planificación del {{ fecha }}{% endblock %}
 
 {% block body %}
+
+
 <h1>Planificación para el {{ fecha }}</h1>
+{% if asignaciones is not null %}
+    {# renderiza la tabla como antes #}
+{% else %}
+    <div class="alert alert-warning">No se pudo calcular una planificación válida.</div>
+{% endif %}
 
 {% for asignacion in asignaciones %}
     <h2>Conductor {{ conductores[asignacion.conductor_index].nombre }}</h2>

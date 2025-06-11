@@ -5,6 +5,7 @@ use App\Entity\Servicio;
 use App\Entity\Receptor;
 use App\Entity\Cliente;
 use App\Entity\Centro;
+use App\Entity\Usuario;
 use App\Entity\Vehiculo;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -54,6 +55,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Receptor', 'fas fa-list', Receptor::class);
         yield MenuItem::linkToCrud('Cliente', 'fas fa-list', Cliente::class);
         yield MenuItem::linkToCrud('Centro', 'fas fa-list', Centro::class);
+        yield MenuItem::linkToCrud('Usuario', 'fas fa-list', Usuario::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

@@ -1,22 +1,66 @@
-{% extends 'plantilla.html.twig' %}
-{% block titulo %}<h1>Login</h1>{% endblock %}
-{% block contenido %}
-<div id='divLogin'>
- {% if error %}
- <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
- {% endif %}
- <form  action="{{ path('app_login') }}" method="post">
- <label for="username">Email:</label>
- <input type="text" id="username" name="_username" value="{{ last_username }}">
- <label for="password">Password:</label>
- <input type="password" id="password" name="_password">
- {# If you want to control the URL the user is redirected to on success
- <input type="hidden" name="_target_path" value="/account"> #}
- <button id='btnLogin' type="submit">login</button>
-  <a href="/register">Si no tienes cuenta refistrate aquí</a>
- </form>
+{% extends 'base.html.twig' %}
 
- </div>
- 
+{% block title %}Iniciar Sesión{% endblock %}
 
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+
+                    <h1 class="card-title text-center mb-4 h3">Iniciar Sesión</h1>
+
+                    {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+
+                    <form action="{{ path('app_login') }}" method="post">
+                        
+                        {# Campo de Email (Username) #}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Correo Electrónico</label>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" required autofocus>
+                        </div>
+                        
+                        {# Campo de Contraseña #}
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" id="password" name="_password" class="form-control" required>
+                        </div>
+
+                        {# Aquí podrías añadir un "Recordarme" si lo tienes configurado #}
+                        {#
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="remember_me" name="_remember_me">
+                            <label class="form-check-label" for="remember_me">Recordarme</label>
+                        </div>
+                        #}
+
+                        {# Botón de Login #}
+                        <div class="d-grid">
+                            <button class="btn btn-caround btn-lg" type="submit">Entrar</button>
+                        </div>
+
+                        {# CSRF Token (importante para la seguridad) #}
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    </form>
+
+                    <hr>
+
+                    <div class="text-center">
+                        <p class="mb-0">¿No tienes una cuenta?</p>
+                        <a href="{{ path('app_registration') }}">Regístrate aquí</a> 
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 {% endblock %}

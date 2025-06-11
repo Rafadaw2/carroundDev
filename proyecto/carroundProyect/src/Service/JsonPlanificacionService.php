@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Service;
 
 use App\Entity\Servicio;
@@ -8,62 +9,68 @@ use Symfony\Component\Filesystem\Filesystem;
 use function PHPUnit\Framework\fileExists;
 
 //Permite perparar los datos a planficar en un JSON para surtir el script
-class JsonPlanificacionService 
+class JsonPlanificacionService
 {
 
-    public function obtenerJsonPlanificacion(array $servicios, array $conductores):?array {
-        $archivoPlanficacion= new Filesystem();
+    public function obtenerJsonPlanificacion(array $servicios, array $conductores): ?array
+    {
+        $archivoPlanficacion = new Filesystem();
 
-        $ruta= __DIR__ .'/../../planificacion';
+        $ruta = __DIR__ . '/../../planificacion';
 
-        if(!fileExists($ruta)){
+        if (!fileExists($ruta)) {
             $archivoPlanficacion->mkdir($ruta);
         }
 
-        $fechaHora= (new \DateTime())->format('Y-m-d_Hi');
-        $nombre="planficacion_$fechaHora.json";
-        $destino=realpath($ruta).'/'.$nombre;
+        $fechaHora = (new \DateTime())->format('Y-m-d_Hi');
+        $nombre = "planficacion_$fechaHora.json";
+        $destino = $ruta . '/' . $nombre;
 
-        $arrayCondcutores=array_map(function(Usuario $c){
+       /* $arrayCondcutores = array_values(array_map(function (Usuario $c) {
             return [
-                'latitud'=>$c->getLatitudDomicilio(),
-                'longitud'=>$c->getLongitudDomicilio(),
+                'latitud' => $c->getLatitudDomicilio(),
+                'longitud' => $c->getLongitudDomicilio(),
             ];
-        },$conductores);
+        }, $conductores));*/
+        // En JsonPlanificacionService
+        $arrayCondcutores = array_values(array_map(function (Usuario $c) {
+            return [
+                'latitud' => $c->getLatitudDomicilio(),
+                'longitud' => $c->getLongitudDomicilio(),
+            ];
+        }, array_filter($conductores, function (Usuario $c) {
+            return $c->getLatitudDomicilio() !== null && $c->getLongitudDomicilio() !== null;
+        })));
+        
 
-        $arrayServicios= array_map(function(Servicio $s){
-            return[
-                'id'=>$s->getId(),
-                'recogida'=>[
-                    'latitud'=>$s->getLatitudRecogida(),
-                    'longitud'=>$s->getLongitudRecogida(),
+
+        $arrayServicios = array_map(function (Servicio $s) {
+            return [
+                'id' => $s->getId(),
+                'recogida' => [
+                    'latitud' => $s->getLatitudRecogida(),
+                    'longitud' => $s->getLongitudRecogida(),
                 ],
-                'entrega'=>[
-                    'latitud'=>$s->getLatitudEntrega(),
-                    'longitud'=>$s->getLongitudEntrega(),
+                'entrega' => [
+                    'latitud' => $s->getLatitudEntrega(),
+                    'longitud' => $s->getLongitudEntrega(),
                 ]
-                ];
-        },$servicios);
+            ];
+        }, $servicios);
 
-        $json=json_encode([
-            'conductores'=>$arrayCondcutores,
-            'servicios'=>$arrayServicios
-        ],JSON_PRETTY_PRINT);//Para que sea más legible
+        $json = json_encode([
+            'conductores' => $arrayCondcutores,
+            'servicios' => $arrayServicios
+        ], JSON_PRETTY_PRINT); //Para que sea más legible
 
-        $archivoPlanficacion->dumpFile($destino,$json);//Lo guardamos en su destino
+        $archivoPlanficacion->dumpFile($destino, $json); //Lo guardamos en su destino
 
         return [
-            'json'=>$json,
-            'archivo'=>$nombre,
-            'conductores'=> $conductores,
-            'servicios'=> $servicios,
-            'ruta'=>$destino
+            'json' => $json,
+            'archivo' => $nombre,
+            'conductores' => $conductores,
+            'servicios' => $servicios,
+            'ruta' => $destino
         ];
-
-
-
-
-
-
     }
 }

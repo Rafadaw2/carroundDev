@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container mt-4">
     <h1>Editar o planificar servicio</h1>
 
     {{ form_start(PlanServiceForm) }}
+    <div class="mb-3 row">
         {{ form_widget(PlanServiceForm) }}
         <button class="btn btn-success">Guardar</button>
+    </div>
     {{ form_end(PlanServiceForm) }}
-        <script>
+    
+</div>
+    <script>
     function initAutocomplete() {
         const inputs = document.querySelectorAll('.autocomplete-address');
         inputs.forEach(input => {

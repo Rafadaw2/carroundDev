@@ -1,0 +1,21 @@
+{
+    "conductores": [
+        {
+            "latitud": 40.269315678372,
+            "longitud": -3.9198899041285
+        },
+        {
+            "latitud": 40.3262223,
+            "longitud": -3.8757321
+        },
+        {
+            "latitud": 40.3912888,
+            "longitud": -3.6509936
+        },
+        {
+            "latitud": 40.4466796,
+            "longitud": -3.7167772
+        }
+    ],
+    "servicios": []
+}
