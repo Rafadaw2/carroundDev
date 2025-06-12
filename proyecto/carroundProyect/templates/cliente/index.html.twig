@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Cliente{% endblock %}
+
+{% block body %}
+<div id='formulario'>
+        {{ form_start(newClienteForm) }}
+
+        {{ form_row(newClienteForm.NIF) }}
+        {{ form_row(newClienteForm.razonSocial) }}
+        {{ form_row(newClienteForm.direccion) }}
+        <button class="btn btn-caround">Crear</button>
+        {{ form_end(newClienteForm) }}
+
+    </div>
+{% endblock %}

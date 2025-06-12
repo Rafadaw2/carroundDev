@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Planificación del {{ fecha }}{% endblock %}
+{% block tittle %}
+{{titulo}} {{ fecha }}
+<a href="/planificador/confirmar/{{fecha|date('Y-m-d') }}" class=" mt-auto btn btn-caround">Confirmar</a>
+{% endblock %}
+
 
 {% block body %}
 
 
-<h1>Planificación para el {{ fecha }}</h1>
 {% if asignaciones is not null %}
     {# renderiza la tabla como antes #}
 {% else %}
@@ -13,9 +16,9 @@
 {% endif %}
 
 {% for asignacion in asignaciones %}
-    <h2>Conductor {{ conductores[asignacion.conductor_index].nombre }}</h2>
+    <h2>Conductor {{ conductores[asignacion.conductor_index].nombre }}, Domicilio: {{ conductores[asignacion.conductor_index].domicilio }}</h2>
 
-    <table border="1" cellpadding="6" cellspacing="0">
+    <table class="table table-striped" border="1" cellpadding="6" cellspacing="0">
         <thead>
             <tr>
                 <th>Orden</th>

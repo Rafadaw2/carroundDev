@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Añadir centro{% endblock %}
+
+{% block body %}
+    <div id='formulario'>
+        {{ form_start(newCentroForm) }}
+
+        {{ form_row(newCentroForm.nombre) }}
+        {{ form_row(newCentroForm.direccion) }}
+        {{ form_row(newCentroForm.telefono) }}
+        <div style="display: flex; align-items: center;">
+            {{ form_row(newCentroForm.cliente) }}
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='/cliente/new'">
+                Añadir cliente
+            </button>
+        </div>
+
+
+        <button class="btn btn-caround">Crear</button>
+        {{ form_end(newCentroForm) }}
+
+    </div>
+{% endblock %}

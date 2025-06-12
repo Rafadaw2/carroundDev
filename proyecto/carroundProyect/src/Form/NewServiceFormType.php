@@ -16,7 +16,7 @@ class NewServiceFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        //$creador=$this->getUser(); Por defecto colocar como creador el usuario logeado
+        
         $builder
             ->add('direccionRecogida',null,[
                 'attr' => ['class' => 'autocomplete-address', 'autocomplete' => 'off'],
@@ -40,13 +40,9 @@ class NewServiceFormType extends AbstractType
                 'class' => Vehiculo::class,
                 'choice_label' => 'matricula',
             ])
-            ->add('creador', EntityType::class, [
-                'class' => Usuario::class,
-                'choice_label' => 'id',
-            ])
             ->add('receptor', EntityType::class, [
                 'class' => Receptor::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nombre',
             ])
 
         ;

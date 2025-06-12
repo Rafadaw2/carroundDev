@@ -69,6 +69,9 @@ class Servicio
     #[ORM\Column(nullable: true)]
     private ?float $longitudEntrega = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $anulado = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -290,6 +293,18 @@ class Servicio
     public function setLongitudEntrega(?float $longitudEntrega): static
     {
         $this->longitudEntrega = $longitudEntrega;
+
+        return $this;
+    }
+
+    public function getAnulado(): ?int
+    {
+        return $this->anulado;
+    }
+
+    public function setAnulado(?int $anulado): static
+    {
+        $this->anulado = $anulado;
 
         return $this;
     }

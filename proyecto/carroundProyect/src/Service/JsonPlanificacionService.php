@@ -22,7 +22,7 @@ class JsonPlanificacionService
             $archivoPlanficacion->mkdir($ruta);
         }
 
-        $fechaHora = (new \DateTime())->format('Y-m-d_Hi');
+        $fechaHora = (new \DateTime())->format('Y-m-d');
         $nombre = "planficacion_$fechaHora.json";
         $destino = $ruta . '/' . $nombre;
 
@@ -35,6 +35,7 @@ class JsonPlanificacionService
         // En JsonPlanificacionService
         $arrayCondcutores = array_values(array_map(function (Usuario $c) {
             return [
+                'id'=>$c->getId(),
                 'latitud' => $c->getLatitudDomicilio(),
                 'longitud' => $c->getLongitudDomicilio(),
             ];

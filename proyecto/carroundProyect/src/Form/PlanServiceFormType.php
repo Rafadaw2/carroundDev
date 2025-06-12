@@ -19,30 +19,18 @@ class PlanServiceFormType extends AbstractType
         $builder
             ->add('direccionRecogida',null,[
                 'attr' => ['class' => 'autocomplete-address', 'autocomplete' => 'off'],
+                'label' => 'Recogida'
             ])
             ->add('direccionEntrega', null, [
                 'attr' => ['class' => 'autocomplete-address', 'autocomplete' => 'off'],
             ])
             ->add('fecha', null, [
                 'widget' => 'single_text',
+                'label' => 'Fecha'
             ])
-            ->add('horaEntregaPrevista')
-            ->add('horaRecogidaPrevista')
-            ->add('horaRecogidaReal')
-            ->add('franjaDisponibilidad', ChoiceType::class, [
-                'choices' => [
-                'mañana' => 'mañana',
-                'tarde' => 'tarde',
-                ],
-                'multiple' => false, // Permitir múltiples opciones
-                'expanded' => true, ]) // Renderiza como checkboxes
             ->add('vehiculo', EntityType::class, [
                 'class' => Vehiculo::class,
                 'choice_label' => 'matricula',
-            ])
-            ->add('creador', EntityType::class, [
-                'class' => Usuario::class,
-                'choice_label' => 'id',
             ])
             ->add('conductor', EntityType::class, [
                 'class' => Usuario::class,
@@ -52,6 +40,15 @@ class PlanServiceFormType extends AbstractType
                 'class' => Receptor::class,
                 'choice_label' => 'NIF',
             ])
+            ->add('anulado', ChoiceType::class, [
+                'choices' => [
+                    'Sí' => 1,
+                    'No' => 0,
+                ],
+                'expanded' => true,  
+                'multiple' => false, 
+                'label' => 'Anulado'
+            ]);
         ;
     }
 

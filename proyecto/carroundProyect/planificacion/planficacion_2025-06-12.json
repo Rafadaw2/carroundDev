@@ -1,0 +1,70 @@
+{
+    "conductores": [
+        {
+            "id": 2,
+            "latitud": 40.269315678372,
+            "longitud": -3.9198899041285
+        },
+        {
+            "id": 3,
+            "latitud": 40.3262223,
+            "longitud": -3.8757321
+        },
+        {
+            "id": 8,
+            "latitud": 40.3912888,
+            "longitud": -3.6509936
+        },
+        {
+            "id": 9,
+            "latitud": 40.4466796,
+            "longitud": -3.7167772
+        }
+    ],
+    "servicios": [
+        {
+            "id": 16,
+            "recogida": {
+                "latitud": 40.4758131,
+                "longitud": -3.7197322
+            },
+            "entrega": {
+                "latitud": 40.4420518,
+                "longitud": -3.8105409
+            }
+        },
+        {
+            "id": 17,
+            "recogida": {
+                "latitud": 40.4087527,
+                "longitud": -3.7829195
+            },
+            "entrega": {
+                "latitud": 40.325182,
+                "longitud": -3.7706807
+            }
+        },
+        {
+            "id": 18,
+            "recogida": {
+                "latitud": 40.3102856,
+                "longitud": -3.7201377
+            },
+            "entrega": {
+                "latitud": 40.4100285,
+                "longitud": -3.6756668
+            }
+        },
+        {
+            "id": 19,
+            "recogida": {
+                "latitud": 40.3952966,
+                "longitud": -3.6517066
+            },
+            "entrega": {
+                "latitud": 40.320841,
+                "longitud": -3.8672252
+            }
+        }
+    ]
+}
