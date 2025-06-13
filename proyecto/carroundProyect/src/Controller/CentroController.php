@@ -13,7 +13,7 @@ use App\Entity\Centro;
 
 final class CentroController extends AbstractController
 {
-    #[Route('/centro/new', name: 'app_centro')]
+    #[Route('/manager/centro/new', name: 'app_centro')]
     public function newCentro(Request $request, EntityManagerInterface $entityManager): Response
     {
         $centro= new Centro();

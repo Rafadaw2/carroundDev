@@ -1,20 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UsuarioController!{% endblock %}
+{% block tittle %}
+{{titulo}}
+
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/var/www/symfony/carroundProyect/src/Controller/UsuarioController.php</code></li>
-        <li>Your template at <code>/var/www/symfony/carroundProyect/templates/usuario/index.html.twig</code></li>
-    </ul>
-</div>
+ <table class="table table-striped" border="1" cellpadding="6" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Primer apellido</th>
+                <th>Segundo apellido</th>
+                <th>Domicilio</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for conductor in conductores %}
+                
+                <tr>
+                    <td>{{ conductor.nombre}}</td>
+                    <td>{{ conductor.apellido1 }}</td>
+                    <td>{{ conductor.apellido2 }}</td>
+                    <td>{{conductor.domicilio}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
 {% endblock %}
+

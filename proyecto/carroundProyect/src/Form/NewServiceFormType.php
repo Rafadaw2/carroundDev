@@ -27,15 +27,6 @@ class NewServiceFormType extends AbstractType
             ->add('fecha', null, [
                 'widget' => 'single_text',
             ])
-            ->add('horaRecogidaPrevista')
-            ->add('franjaDisponibilidad')
-            ->add('franjaDisponibilidad', ChoiceType::class, [
-                'choices' => [
-                'mañana' => 'mañana',
-                'tarde' => 'tarde',
-                ],
-                'multiple' => false, // Permitir múltiples opciones
-                'expanded' => true, ]) // Renderiza como checkboxes
             ->add('vehiculo', EntityType::class, [
                 'class' => Vehiculo::class,
                 'choice_label' => 'matricula',

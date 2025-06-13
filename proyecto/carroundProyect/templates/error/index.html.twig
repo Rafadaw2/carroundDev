@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceso denegado{% endblock %}
+
+{% block body %}
+
+<div class="container d-flex flex-column justify-content-center align-items-center vh-100 text-center">
+    <div class="card shadow p-4">
+        <h1 class="display-4 text-danger"><i class="bi bi-shield-lock-fill"></i> Acceso Denegado</h1>
+        <p class="lead">No tienes permisos para acceder a esta página.</p>
+        <a href="{{ path('app_login') }}" class="btn btn-caround mt-3">Volver al inicio de sesión</a>
+    </div>
+</div> 
+
+{% endblock %}

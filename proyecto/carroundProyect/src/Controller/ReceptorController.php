@@ -15,6 +15,9 @@ final class ReceptorController extends AbstractController
     #[Route('/receptor/new', name: 'app_receptor')]
     public function newReceptor(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->isGranted('ROLE_PLANIFICADOR') && !$this->isGranted('ROLE_CLIENTE')) {
+            throw $this->createAccessDeniedException();
+        }        
         $receptor= new Receptor();
         $form=$this->createForm(NewReceptorFormType::class, $receptor);
         $form->handleRequest($request);

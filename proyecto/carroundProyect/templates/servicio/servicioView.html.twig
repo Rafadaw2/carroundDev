@@ -30,7 +30,7 @@
             <p class="card-text">Recogida: {{servicio.direccionRecogida}}</p>
             <p class="card-text">Entrega: {{servicio.direccionEntrega}}</strong></p>
             {% if is_granted('ROLE_PLANIFICADOR') %}
-            <a href="/servicio/{{servicio.id}}/edit" class=" mt-auto btn btn-info">Modificar</a>
+            <a href="/planificador/servicio/{{servicio.id}}/edit" class=" mt-auto btn btn-info">Modificar</a>
             {% endif %}
           </div>
       </div>

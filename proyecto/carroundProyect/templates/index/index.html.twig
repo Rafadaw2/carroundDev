@@ -1,20 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello IndexController!{% endblock %}
+{% block title %}Noticias - Carround{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container my-5">
+    <h1 class="mb-4 text-primary">Últimas Noticias de Carround 🚗</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Apertura de nueva sede en Madrid</h5>
+            <h6 class="card-subtitle mb-2 text-muted">13 de junio de 2025</h6>
+            <p class="card-text">Carround inaugura una nueva oficina central en Madrid para mejorar la cobertura de servicios y ampliar su equipo de operaciones.</p>
+        </div>
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/var/www/symfony/carroundProyect/src/Controller/IndexController.php</code></li>
-        <li>Your template at <code>/var/www/symfony/carroundProyect/templates/index/index.html.twig</code></li>
-    </ul>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">¡Lanzamos nuestra app móvil!</h5>
+            <h6 class="card-subtitle mb-2 text-muted">5 de junio de 2025</h6>
+            <p class="card-text">Ya está disponible la nueva aplicación móvil de Carround, diseñada para facilitar la gestión de rutas y servicios en tiempo real.</p>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Colaboración con el Ayuntamiento</h5>
+            <h6 class="card-subtitle mb-2 text-muted">22 de mayo de 2025</h6>
+            <p class="card-text">Firmamos un acuerdo de colaboración con el Ayuntamiento de Madrid para la optimización del transporte urbano adaptado.</p>
+        </div>
+    </div>
 </div>
 {% endblock %}

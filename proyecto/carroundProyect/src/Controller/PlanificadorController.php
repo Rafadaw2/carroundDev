@@ -135,9 +135,9 @@ final class PlanificadorController extends AbstractController
         UsuarioRepository $usuarioRepository
 
     ): Response {
-
+        $fechaConvertida = \DateTime::createFromFormat('Y-m-d', $fecha)->format('d-m-Y');
         $ruta = __DIR__ . '/../../planificacionEficiente';
-        $nombre = "planficacionEficiente_$fecha.json";
+        $nombre = "planficacionEficiente_$fechaConvertida.json";
         $destino = $ruta . '/' . $nombre;
 
         $jsonDatos = file_get_contents($destino);
@@ -154,7 +154,6 @@ final class PlanificadorController extends AbstractController
                 $servicio = $servicioRepository->findOneBy(['id' => $idServicio]);
                 //Le asignamos su conductor
                 $servicio->setConductor($conductor);
-                $fechaBase = \DateTime::createFromFormat('Y-m-d', $fecha);
                 $horaEstim=$ruta['hora_estim'];
                 $hora = (new \DateTime())->setTime(0, 0)->modify("+{$horaEstim} seconds");
                 $horaFormateada = $hora->format('H:i:s');
@@ -198,11 +197,11 @@ final class PlanificadorController extends AbstractController
         $conductores = array_values($conductores);
 
         $fechaFiltro = \DateTime::createFromFormat('Y-m-d', $fecha);
-        $fechaFiltrada=$fechaFiltro->setTime(0, 0, 0);
+        $fechaFiltro->setTime(0, 0, 0);
         $servicios = $servicioRepository->createQueryBuilder('s')
             ->where('s.fecha = :fecha')
-            ->andWhere('s.activo = 0 OR s.activo IS NULL')
-            ->setParameter('fecha', $fecha)
+            ->andWhere('(s.anulado = 0 OR s.anulado IS NULL)')
+            ->setParameter('fecha', $fechaFiltro)
             ->getQuery()
             ->getResult();
 
@@ -251,19 +250,11 @@ final class PlanificadorController extends AbstractController
             'titulo'=>'Planficación del '
         ]);
     }
+    //DIRIGE AL FRONT DEL CONDUCTOR HEHCO CON JS
+     #[Route('/conductor/servicios', name: 'app_planificacionConductor')]
+    public function obtenerPlanificacionConductor(): Response {
 
-     #[Route('/prueba', name: 'app_planificadorPrueba')]
-    public function prueba(
-   
-
-    ): Response {
-
-        return $this->render('planificador/index.html.twig', [
-            'conductores' => $conductores,
-            'servicios' => $servicios,
-            'fecha' => $fechaformat,
-            'asignaciones' => $asignaciones,
-            'titulo'=>'Planficación del '
+        return $this->render('planificador/planificacionConductor.html.twig', [
         ]);
     }
 }

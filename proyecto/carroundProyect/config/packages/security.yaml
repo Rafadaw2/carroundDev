@@ -27,16 +27,23 @@ security:
                 login_path: app_login
                 check_path: app_login
                 default_target_path: app_index
+                
 
             logout:
                 path: app_logout
                 target: app_login
+
+            access_denied_url: /acceso-denegado
                 
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/cliente, roles: ROLE_CLIENTE }
+        - { path: ^/planificador, roles: ROLE_PLANIFICADOR }
+        - { path: ^/conductor, roles: ROLE_CONDUCTOR }
+        - { path: ^/manager, roles: ROLE_MANAGER }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

@@ -15,6 +15,9 @@ final class VehiculoController extends AbstractController
     #[Route('/vehiculo/new', name: 'app_vehiculo')]
     public function newVehiculo(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->isGranted('ROLE_PLANIFICADOR') && !$this->isGranted('ROLE_CLIENTE')) {
+            throw $this->createAccessDeniedException();
+        }
         $vehiculo= new Vehiculo();
         $form=$this->createForm(NewVehiculoFormType::class, $vehiculo);
         $form->handleRequest($request);

@@ -27,9 +27,18 @@
       <a class="navbar-brand d-flex align-items-center me-auto ms-2" href="#">
         <img src="{{ asset('img/LOGO2.png') }}" alt="Caround Logo" class="logo" />
       </a>
-    {% if is_granted('ROLE_PLANIFICADOR') or is_granted('ROLE_CLIENTE') %}
+    {% if is_granted('ROLE_PLANIFICADOR') %}
       <!-- Buscador -->
       <form method="get" action="/servicio/show/{matricula}" class="d-none d-md-flex mx-auto w-50">
+        <input class="form-control form-control-sm me-2" type="search" name="matricula" placeholder="Buscar matrícula..." aria-label="Buscar">
+        <button class="btn btn-outline-secondary btn-sm" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+    {% endif %}
+    {% if is_granted('ROLE_CLIENTE') %}
+      <!-- Buscador -->
+      <form method="get" action="/cliente/servicio/show/{matricula}" class="d-none d-md-flex mx-auto w-50">
         <input class="form-control form-control-sm me-2" type="search" name="matricula" placeholder="Buscar matrícula..." aria-label="Buscar">
         <button class="btn btn-outline-secondary btn-sm" type="submit">
           <i class="bi bi-search"></i>
@@ -65,7 +74,7 @@
 
         {% if is_granted('ROLE_PLANIFICADOR') %}
         <li class="nav-item">
-          <a class="nav-link" href="/servicio/show">Planificar</a>
+          <a class="nav-link" href="/planificador/servicio/show">Planificar</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ path('app_show_planificacion') }}">Historial</a>
@@ -89,28 +98,37 @@
 
         {% if is_granted('ROLE_MANAGER') %}
         <li class="nav-item">
-          <a class="nav-link" href="/estadisticas">Estadísticas</a>
+          <a class="nav-link" href="/manager/estadisticas">Estadísticas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/registro">➕ Usuario</a>
+          <a class="nav-link" href="">Flota</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('app_usuario')}}">Conductores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/manager/registro">➕ Usuario</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/cliente/new">➕ Cliente</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Ver flota</a>
+          <a class="nav-link" href="/centro/new">➕ Centro</a>
         </li>
         {% endif %}
 
         {% if is_granted('ROLE_CLIENTE') %}
         <li class="nav-item">
-          <a class="nav-link" href="/servicio/show">Servicios</a>
+          <a class="nav-link" href="/cliente/servicio/show">Servicios</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/servicio/new">➕ Servicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Planificación</a>
+          <a class="nav-link" href="/receptor/new">➕ Receptor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/vehiculo/new">➕ Vehículo</a>
         </li>
         {% endif %}
       </ul>
@@ -125,14 +143,12 @@
       <div class="offcanvas-body">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" href="#">Inicio</a>
+            <a class="nav-link" href="/index">Noticias</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Vehículos</a>
+            <a class="nav-link" href="{{path('app_planificacionConductor')}}">Ruta</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Perfil</a>
-          </li>
+
         </ul>
       </div>
     </div>

@@ -13,9 +13,10 @@ use App\Entity\Cliente;
 
 final class ClienteController extends AbstractController
 {
-    #[Route('/cliente/new', name: 'app_cliente')]
+    #[Route('/manager/cliente/new', name: 'app_cliente')]
     public function newCliente(Request $request, EntityManagerInterface $entityManager): Response
     {
+
         $cliente= new Cliente();
         $form=$this->createForm(NewClienteFormType::class, $cliente);
         $form->handleRequest($request);

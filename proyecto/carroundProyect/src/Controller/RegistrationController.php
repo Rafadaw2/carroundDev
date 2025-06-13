@@ -14,7 +14,7 @@ use App\Service\GeocodingService;
 
 final class RegistrationController extends AbstractController
 {
-    #[Route('/registro', name: 'app_registration')]
+    #[Route('/manager/registro', name: 'app_registration')]
     public function register(
         Request $request,
         UserPasswordHasherInterface $passwordHasher,

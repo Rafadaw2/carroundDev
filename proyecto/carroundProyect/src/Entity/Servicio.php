@@ -35,8 +35,9 @@ class Servicio
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $horaRecogidaReal = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $franjaDisponibilidad = null;
+
 
     #[ORM\Column(nullable: true)]
     private ?int $kmInicial = null;
@@ -166,7 +167,7 @@ class Servicio
         return $this->franjaDisponibilidad;
     }
 
-    public function setFranjaDisponibilidad(string $franjaDisponibilidad): static
+    public function setFranjaDisponibilidad(?string $franjaDisponibilidad): static
     {
         $this->franjaDisponibilidad = $franjaDisponibilidad;
 
