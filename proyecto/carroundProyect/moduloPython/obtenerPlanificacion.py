@@ -1,16 +1,13 @@
-# ==============================================================================
-# =================== SCRIPT FINAL (VERSIÓN DEFINITIVA) ======================
-# ==============================================================================
+
 import sys
 import json
 import requests
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 import time
 
-# --- 1. Configuración ---
+# CLAVE DE LA AP Y NUMERO DE HORAS PERMITIDAS DE JORNADA
 API_KEY = 'AIzaSyB2wKLunLGMaj30wVT40I5CiBR-8erSMeI'
 HORA_INICIO = 28800  # 08:00 AM
-# Ventana de tiempo HOLGADA para que el solver no se ahogue.
 MAX_SEGUNDOS_JORNADA = 24 * 3600
 
 try:
@@ -19,11 +16,14 @@ try:
 except Exception as e:
     print(json.dumps({"error": f"Error al leer el JSON: {e}"}), file=sys.stderr)
     sys.exit(1)
+# OBTENEMOS LOS PARAMETROS PASADOS 
 conductores = datos.get('conductores', [])
 servicios = datos.get('servicios', [])
 if not servicios or not conductores:
     print(json.dumps([]))
     sys.exit(0)
+
+#CONSTRUIMOS LA MATRIZ PARA LA API DISTANCE MATRIX
 def construir_matriz(ubicaciones, api_key):
     puntos = [f"{round(u['latitud'], 6)},{round(u['longitud'], 6)}" for u in ubicaciones]
     n = len(puntos)
@@ -52,7 +52,7 @@ def construir_matriz(ubicaciones, api_key):
 ubicaciones = conductores + [s['recogida'] for s in servicios] + [s['entrega'] for s in servicios]
 matriz_tiempos = construir_matriz(ubicaciones, API_KEY)
 
-# --- 3. Preparación y Resolución ---
+#  3. Preparación y Resolución 
 manager = pywrapcp.RoutingIndexManager(len(ubicaciones), len(conductores), list(range(len(conductores))), list(range(len(conductores))))
 routing = pywrapcp.RoutingModel(manager)
 

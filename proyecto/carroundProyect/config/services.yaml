@@ -22,6 +22,16 @@ services:
     App\Service\GeocodingService:
         arguments:
             $googleApiKey : '%google_api_key%'
+    tracabilityLogger:
+        class: Psr\Log\LoggerInterface
+        factory: ['@monolog.logger', 'tracability']
+    App\Controller\Trazabilidad\TrazabilidadController:
+        tags:
+            - { name: kernel.event_listener, event: Symfony\Component\Security\Http\Event\LoginSuccessEvent, method: registroLogin }
+            - { name: 'kernel.event_listener', event: 'Symfony\Component\Security\Http\Event\LogoutEvent', method: 'registroLogout' }
+            - { name: 'kernel.event_listener', event: 'EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityPersistedEvent', method: 'registroAccionPersistencia' }
+            - { name: 'kernel.event_listener', event: 'EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityUpdatedEvent', method: 'registroAccionActualizacion' }
+            - { name: 'kernel.event_listener', event: 'EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityDeletedEvent', method: 'registroAccionEliminacion' }
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

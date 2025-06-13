@@ -1,0 +1,6 @@
+[2025-06-13T18:32:21.550187+00:00] tracability.INFO: El usuario cliente@gmail.com ha cerrado sesión, Fecha: 2025-06-13 18:32:21 {"usuario":"cliente@gmail.com","fecha":"2025-06-13 18:32:21"} []
+[2025-06-13T18:32:24.617453+00:00] tracability.INFO: Inicio de sesión de cliente@gmail.com, Fecha: 2025-06-13 18:32:24 {"usuario":"cliente@gmail.com","fecha":"2025-06-13 18:32:24"} []
+[2025-06-13T18:32:44.368875+00:00] tracability.INFO: El usuario cliente@gmail.com ha cerrado sesión, Fecha: 2025-06-13 18:32:44 {"usuario":"cliente@gmail.com","fecha":"2025-06-13 18:32:44"} []
+[2025-06-13T18:32:47.822687+00:00] tracability.INFO: Inicio de sesión de planficador@gmail.com, Fecha: 2025-06-13 18:32:47 {"usuario":"planficador@gmail.com","fecha":"2025-06-13 18:32:47"} []
+[2025-06-13T18:33:25.035043+00:00] tracability.INFO: El usuario planficador@gmail.com ha cerrado sesión, Fecha: 2025-06-13 18:33:25 {"usuario":"planficador@gmail.com","fecha":"2025-06-13 18:33:25"} []
+[2025-06-13T18:33:29.640225+00:00] tracability.INFO: Inicio de sesión de manager@gmail.com, Fecha: 2025-06-13 18:33:29 {"usuario":"manager@gmail.com","fecha":"2025-06-13 18:33:29"} []
