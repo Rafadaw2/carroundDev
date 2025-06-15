@@ -39,17 +39,7 @@ final class PlanificadorController extends AbstractController
             ->orderBy('s.horaRecogidaPrevista', 'ASC')
             ->getQuery()
             ->getResult();
-        //Me saco los conductores de esos servicios
-        /*$conductores=[];
-        $ids=[];
-        foreach($servicios as $servicio){
-            $conductor=$servicio->getConductor();
-                if ($conductor && !in_array($conductor->getId(), $ids)) {
-                    $conductores[] = $conductor;
-                    $ids[] = $conductor->getId();
-                }
-        }
-        */
+
         return $this->render('planificador/planificadorView.html.twig', [
             'servicios' => $servicios,
             'fecha'=>$fechaFiltro->format('d-m-Y'),
@@ -221,7 +211,7 @@ final class PlanificadorController extends AbstractController
             return new Response(
                 "Error en la ejecución del script de Python:\n" .
                     $procesoScript->getErrorOutput() . "\n" .
-                    $procesoScript->getOutput(), // esto muestra stdout también
+                    $procesoScript->getOutput(),
                 500
             );
         }
