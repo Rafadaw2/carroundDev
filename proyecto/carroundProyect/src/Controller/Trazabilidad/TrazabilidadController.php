@@ -38,7 +38,7 @@ class TrazabilidadController
 
     private function registroAccionAdmin(object $event, string $accion): void
     {
-        dump("Evento de acción detectado: {$accion}"); // Esto debería aparecer en la barra de depuración
+        dump("Evento de acción detectado: {$accion}");
         $usuario = $this->getUser();
         $entity = $event->getEntityInstance();
         $fecha = date('Y-m-d H:i:s');

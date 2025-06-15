@@ -1,0 +1,34 @@
+[
+    {
+        "conductor_index": 1,
+        "ruta": [
+            {
+                "tipo": "recogida",
+                "servicio_id": 162,
+                "hora_estim": 30898
+            },
+            {
+                "tipo": "entrega",
+                "servicio_id": 162,
+                "hora_estim": 32690
+            }
+        ],
+        "id": 3
+    },
+    {
+        "conductor_index": 3,
+        "ruta": [
+            {
+                "tipo": "recogida",
+                "servicio_id": 161,
+                "hora_estim": 30932
+            },
+            {
+                "tipo": "entrega",
+                "servicio_id": 161,
+                "hora_estim": 33131
+            }
+        ],
+        "id": 9
+    }
+]

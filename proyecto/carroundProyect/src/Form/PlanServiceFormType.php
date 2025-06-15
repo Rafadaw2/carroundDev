@@ -45,6 +45,7 @@ class PlanServiceFormType extends AbstractType
                     'Sí' => 1,
                     'No' => 0,
                 ],
+                'required' => false,
                 'expanded' => true,  
                 'multiple' => false, 
                 'label' => 'Anulado'

@@ -123,7 +123,6 @@ final class PlanificadorController extends AbstractController
         ServicioRepository $servicioRepository,
         EntityManagerInterface $entity_manager,
         UsuarioRepository $usuarioRepository
-
     ): Response {
         $fechaConvertida = \DateTime::createFromFormat('Y-m-d', $fecha)->format('d-m-Y');
         $ruta = __DIR__ . '/../../planificacionEficiente';

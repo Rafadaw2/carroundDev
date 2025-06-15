@@ -138,7 +138,14 @@ final class ServicioController extends AbstractController
         $fecha = $request->query->get('fecha');
         $fechaFiltro= $fecha ? \DateTime::createFromFormat('Y-m-d',$fecha):new \DateTime();
         $fechaFiltro->setTime(0, 0, 0);
-        $servicios= $servicioRepository->findBy(['fecha'=>$fechaFiltro]);
+        $qb = $servicioRepository->createQueryBuilder('s')
+            ->where('s.fecha = :fecha')
+            ->andWhere('s.anulado IS NULL OR s.anulado = 0')
+            ->andWhere('s.horaEntregaPrevista IS NULL ')
+            ->andWhere('s.horaRecogidaPrevista IS NULL ')
+            ->setParameter('fecha', $fechaFiltro);
+
+        $servicios = $qb->getQuery()->getResult();
 
         return $this->render('servicio/servicioView.html.twig', [
             'servicios' => $servicios,
@@ -190,6 +197,7 @@ final class ServicioController extends AbstractController
             'titulo'=>'Servicios del vehiculo '
         ]);
     }
+   
 
     //OBTIENE LOS SERIVIOS QUE TIENE ASIGNADOS CADA CONDUCTOR
     #[Route('/planificador/servicio/plan', name: 'app_show_plan')]
