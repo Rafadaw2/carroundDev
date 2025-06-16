@@ -1,0 +1,150 @@
+[
+    {
+        "conductor_index": 2,
+        "ruta": [
+            {
+                "tipo": "recogida",
+                "servicio_id": 172,
+                "hora_estim": 30047
+            },
+            {
+                "tipo": "entrega",
+                "servicio_id": 172,
+                "hora_estim": 31155
+            },
+            {
+                "tipo": "recogida",
+                "servicio_id": 165,
+                "hora_estim": 31663
+            },
+            {
+                "tipo": "entrega",
+                "servicio_id": 165,
+                "hora_estim": 31874
+            }
+        ],
+        "id": 8
+    },
+    {
+        "conductor_index": 3,
+        "ruta": [
+            {
+                "tipo": "recogida",
+                "servicio_id": 168,
+                "hora_estim": 30859
+            },
+            {
+                "tipo": "entrega",
+                "servicio_id": 168,
+                "hora_estim": 32562
+            }
+        ],
+        "id": 9
+    },
+    {
+        "conductor_index": 4,
+        "ruta": [
+            {
+                "tipo": "recogida",
+                "servicio_id": 173,
+                "hora_estim": 30571
+            },
+            {
+                "tipo": "entrega",
+                "servicio_id": 173,
+                "hora_estim": 31128
+            }
+        ],
+        "id": 10
+    },
+    {
+        "conductor_index": 6,
+        "ruta": [
+            {
+                "tipo": "recogida",
+                "servicio_id": 164,
+                "hora_estim": 30400
+            },
+            {
+                "tipo": "entrega",
+                "servicio_id": 164,
+                "hora_estim": 31475
+            }
+        ],
+        "id": 12
+    },
+    {
+        "conductor_index": 7,
+        "ruta": [
+            {
+                "tipo": "recogida",
+                "servicio_id": 169,
+                "hora_estim": 30889
+            },
+            {
+                "tipo": "entrega",
+                "servicio_id": 169,
+                "hora_estim": 31408
+            }
+        ],
+        "id": 13
+    },
+    {
+        "conductor_index": 11,
+        "ruta": [
+            {
+                "tipo": "recogida",
+                "servicio_id": 167,
+                "hora_estim": 30909
+            },
+            {
+                "tipo": "entrega",
+                "servicio_id": 167,
+                "hora_estim": 31415
+            }
+        ],
+        "id": 17
+    },
+    {
+        "conductor_index": 12,
+        "ruta": [
+            {
+                "tipo": "recogida",
+                "servicio_id": 171,
+                "hora_estim": 30432
+            },
+            {
+                "tipo": "entrega",
+                "servicio_id": 171,
+                "hora_estim": 31517
+            }
+        ],
+        "id": 18
+    },
+    {
+        "conductor_index": 13,
+        "ruta": [
+            {
+                "tipo": "recogida",
+                "servicio_id": 170,
+                "hora_estim": 30273
+            },
+            {
+                "tipo": "entrega",
+                "servicio_id": 170,
+                "hora_estim": 30615
+            },
+            {
+                "tipo": "recogida",
+                "servicio_id": 166,
+                "hora_estim": 31236
+            },
+            {
+                "tipo": "entrega",
+                "servicio_id": 166,
+                "hora_estim": 31746
+            }
+        ],
+        "id": 19
+    }
+]

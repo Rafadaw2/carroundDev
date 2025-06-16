@@ -29,7 +29,7 @@
       </a>
     {% if is_granted('ROLE_PLANIFICADOR') %}
       <!-- Buscador -->
-      <form method="get" action="/servicio/show/{matricula}" class="d-none d-md-flex mx-auto w-50">
+      <form method="get" action="/planificador/servicio/show/{matricula}" class="d-none d-md-flex mx-auto w-50">
         <input class="form-control form-control-sm me-2" type="search" name="matricula" placeholder="Buscar matrícula..." aria-label="Buscar">
         <button class="btn btn-outline-secondary btn-sm" type="submit">
           <i class="bi bi-search"></i>
